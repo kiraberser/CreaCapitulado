@@ -3,105 +3,220 @@
 export const departments = [
   {
     id: 1,
+    slug: "desarrollo-software",
     name: "Desarrollo de Software",
     description: "Creación de aplicaciones web y móviles innovadoras",
+    longDescription: "Nuestro equipo de desarrollo está comprometido con la creación de soluciones tecnológicas de vanguardia. Trabajamos con las últimas tecnologías y frameworks para desarrollar aplicaciones que impactan positivamente en la comunidad universitaria.",
     color: "bg-blue-500",
+    gradient: "from-blue-500 to-blue-700",
+    icon: "💻",
     members: [
       {
         id: 1,
+        slug: "ana-garcia",
         name: "Ana García López",
         position: "Coordinador",
         email: "ana.garcia@crea.edu.co",
+        phone: "+57 300 123 4567",
         image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
-        skills: ["React", "Node.js", "Python", "MongoDB"]
+        bio: "Apasionada por el desarrollo full-stack y la arquitectura de software. Con 3 años de experiencia en proyectos universitarios y startups, me especializo en crear soluciones escalables y eficientes.",
+        skills: ["React", "Node.js", "Python", "MongoDB", "AWS", "Docker"],
+        achievements: ["Líder de 5 proyectos exitosos", "Ganadora Hackathon Nacional 2023", "Certificación AWS Solutions Architect"],
+        social: {
+          linkedin: "linkedin.com/in/anagarcia",
+          github: "github.com/anagarcia",
+          twitter: "@anagarcia_dev"
+        },
+        joinDate: "Enero 2022",
+        projects: ["Sistema de Gestión Académica", "App de Movilidad Campus", "Portal Estudiantil"]
       },
       {
         id: 2,
+        slug: "carlos-rodriguez",
         name: "Carlos Rodríguez",
         position: "Desarrollador Frontend",
         email: "carlos.rodriguez@crea.edu.co",
+        phone: "+57 301 234 5678",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-        skills: ["Vue.js", "TypeScript", "CSS", "Figma"]
+        bio: "Especialista en crear interfaces de usuario intuitivas y atractivas. Me encanta transformar diseños complejos en código limpio y mantenible.",
+        skills: ["Vue.js", "TypeScript", "CSS", "Figma", "Tailwind", "Animation"],
+        achievements: ["UI/UX Award 2023", "Contributor Open Source", "Speaker en ConferenciaJS"],
+        social: {
+          linkedin: "linkedin.com/in/carlosrodriguez",
+          github: "github.com/carlosr",
+          twitter: "@carlos_frontend"
+        },
+        joinDate: "Marzo 2022",
+        projects: ["Rediseño Portal CREA", "Dashboard Analytics", "Sistema de Componentes UI"]
       },
       {
         id: 3,
+        slug: "maria-fernandez",
         name: "María Fernández",
         position: "Desarrolladora Backend",
         email: "maria.fernandez@crea.edu.co",
+        phone: "+57 302 345 6789",
         image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-        skills: ["Django", "PostgreSQL", "Docker", "AWS"]
+        bio: "Experta en arquitecturas de backend robustas y APIs escalables. Mi pasión es optimizar el rendimiento y garantizar la seguridad de las aplicaciones.",
+        skills: ["Django", "PostgreSQL", "Docker", "AWS", "Redis", "GraphQL"],
+        achievements: ["Certificación Django Advanced", "Optimización de API 300%", "Mentora Backend 10+ estudiantes"],
+        social: {
+          linkedin: "linkedin.com/in/mariafernandez",
+          github: "github.com/mariaf",
+          twitter: "@maria_backend"
+        },
+        joinDate: "Agosto 2021",
+        projects: ["API REST Unificada", "Sistema de Microservicios", "Backend Chat en Tiempo Real"]
       }
     ]
   },
   {
     id: 2,
+    slug: "diseno-ux-ui",
     name: "Diseño y UX/UI",
     description: "Creación de experiencias digitales excepcionales",
+    longDescription: "Creamos experiencias digitales memorables centradas en el usuario. Combinamos investigación, diseño visual y usabilidad para desarrollar productos que las personas aman usar.",
     color: "bg-green-500",
+    gradient: "from-green-500 to-green-700",
+    icon: "🎨",
     members: [
       {
         id: 4,
+        slug: "laura-martinez",
         name: "Laura Martínez",
         position: "Coordinadora de Diseño",
         email: "laura.martinez@crea.edu.co",
+        phone: "+57 303 456 7890",
         image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
-        skills: ["Figma", "Adobe Creative Suite", "Prototyping", "User Research"]
+        bio: "Diseñadora con enfoque en crear experiencias inclusivas y accesibles. Creo firmemente que el buen diseño debe ser para todos.",
+        skills: ["Figma", "Adobe Creative Suite", "Prototyping", "User Research", "Design Systems", "Accessibility"],
+        achievements: ["Diseño Inclusivo Award", "Design System CREA Creator", "Mentora 15+ diseñadores"],
+        social: {
+          linkedin: "linkedin.com/in/lauramartinez",
+          behance: "behance.net/lauramartinez",
+          dribbble: "dribbble.com/lauramartinez"
+        },
+        joinDate: "Febrero 2021",
+        projects: ["CREA Design System", "App Inclusiva Campus", "Rediseño Plataforma Virtual"]
       },
       {
         id: 5,
+        slug: "diego-morales",
         name: "Diego Morales",
         position: "Diseñador UX",
         email: "diego.morales@crea.edu.co",
+        phone: "+57 304 567 8901",
         image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-        skills: ["Sketch", "InVision", "User Testing", "Wireframing"]
+        bio: "Especialista en investigación de usuarios y arquitectura de información. Me apasiona entender las necesidades reales de los usuarios para crear soluciones efectivas.",
+        skills: ["Sketch", "InVision", "User Testing", "Wireframing", "Journey Mapping", "A/B Testing"],
+        achievements: ["User Research Specialist", "5 estudios publicados", "UX Optimization +40%"],
+        social: {
+          linkedin: "linkedin.com/in/diegomorales",
+          behance: "behance.net/diegomorales",
+          twitter: "@diego_ux"
+        },
+        joinDate: "Junio 2022",
+        projects: ["Research Sistema Académico", "UX Flow App Móvil", "Testing Plataforma CREA"]
       }
     ]
   },
   {
     id: 3,
+    slug: "marketing-digital",
     name: "Marketing Digital",
     description: "Estrategias digitales para el crecimiento y la comunicación",
+    longDescription: "Conectamos con la comunidad a través de estrategias digitales innovadoras. Creamos contenido relevante y campañas que generan impacto real.",
     color: "bg-yellow-500",
+    gradient: "from-yellow-500 to-orange-500",
+    icon: "📱",
     members: [
       {
         id: 6,
+        slug: "sofia-hernandez",
         name: "Sofía Hernández",
         position: "Coordinadora Marketing",
         email: "sofia.hernandez@crea.edu.co",
+        phone: "+57 305 678 9012",
         image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
-        skills: ["Google Analytics", "Social Media", "Content Strategy", "SEO"]
+        bio: "Estratega digital con pasión por el data-driven marketing. Creo en el poder de los datos para crear campañas que realmente conecten con las audiencias.",
+        skills: ["Google Analytics", "Social Media", "Content Strategy", "SEO", "Email Marketing", "Data Analysis"],
+        achievements: ["Crecimiento 200% RRSS", "Google Analytics Certified", "Campaña Viral 1M+ alcance"],
+        social: {
+          linkedin: "linkedin.com/in/sofiahernandez",
+          twitter: "@sofia_marketing",
+          instagram: "@sofia.mkt"
+        },
+        joinDate: "Enero 2021",
+        projects: ["Estrategia Digital CREA", "Campaña Nuevo Semestre", "Newsletter Mensual"]
       },
       {
         id: 7,
+        slug: "alejandro-ruiz",
         name: "Alejandro Ruiz",
         position: "Community Manager",
         email: "alejandro.ruiz@crea.edu.co",
+        phone: "+57 306 789 0123",
         image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-        skills: ["Instagram", "TikTok", "Copywriting", "Canva"]
+        bio: "Creador de contenido y gestor de comunidades. Me encanta crear historias que conecten emocionalmente y generen conversación.",
+        skills: ["Instagram", "TikTok", "Copywriting", "Canva", "Video Editing", "Community Building"],
+        achievements: ["Comunidad 50K+ miembros", "Contenido Viral 5M+ views", "Engagement Rate +8%"],
+        social: {
+          linkedin: "linkedin.com/in/alejandroruiz",
+          twitter: "@alex_community",
+          tiktok: "@alex.crea"
+        },
+        joinDate: "Abril 2022",
+        projects: ["CREA en TikTok", "Serie de Videos Campus", "Gestión Comunidad Discord"]
       }
     ]
   },
   {
     id: 4,
+    slug: "investigacion-innovacion",
     name: "Investigación e Innovación",
     description: "Proyectos de investigación y desarrollo tecnológico",
+    longDescription: "Exploramos las fronteras de la tecnología a través de la investigación aplicada. Desarrollamos proyectos que contribuyen al avance científico y tecnológico.",
     color: "bg-red-500",
+    gradient: "from-red-500 to-pink-500",
+    icon: "🔬",
     members: [
       {
         id: 8,
+        slug: "roberto-silva",
         name: "Dr. Roberto Silva",
         position: "Director de Investigación",
         email: "roberto.silva@crea.edu.co",
+        phone: "+57 307 890 1234",
         image: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face",
-        skills: ["Machine Learning", "Data Science", "Research Methodology", "Python"]
+        bio: "PhD en Ciencias de la Computación con especialización en Machine Learning. Apasionado por aplicar la IA para resolver problemas reales en la educación.",
+        skills: ["Machine Learning", "Data Science", "Research Methodology", "Python", "TensorFlow", "Academic Writing"],
+        achievements: ["10+ papers publicados", "PhD en Computer Science", "Proyecto financiado Colciencias"],
+        social: {
+          linkedin: "linkedin.com/in/robertosilva",
+          github: "github.com/drsilva",
+          scholar: "scholar.google.com/robertosilva"
+        },
+        joinDate: "Septiembre 2020",
+        projects: ["IA para Predicción Académica", "Análisis Big Data Educativo", "ML en Plataformas LMS"]
       },
       {
         id: 9,
+        slug: "valentina-lopez",
         name: "Valentina López",
         position: "Investigadora Junior",
         email: "valentina.lopez@crea.edu.co",
+        phone: "+57 308 901 2345",
         image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face",
-        skills: ["R", "Statistics", "Data Visualization", "Academic Writing"]
+        bio: "Estudiante de maestría en Data Science. Me fascina descubrir patrones en los datos y convertirlos en insights accionables.",
+        skills: ["R", "Statistics", "Data Visualization", "Academic Writing", "Jupyter", "Tableau"],
+        achievements: ["Best Student Paper 2023", "3 investigaciones publicadas", "Beca de Investigación"],
+        social: {
+          linkedin: "linkedin.com/in/valentinalopez",
+          github: "github.com/vlopez",
+          scholar: "scholar.google.com/valentinalopez"
+        },
+        joinDate: "Febrero 2023",
+        projects: ["Análisis Deserción Estudiantil", "Visualización Datos Campus", "Survey Research Estudiantil"]
       }
     ]
   }
