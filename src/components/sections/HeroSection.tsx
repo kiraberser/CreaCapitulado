@@ -40,8 +40,8 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/registro">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8">
+              <Link href="/contacto/aplicar">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 cursor-pointer">
                   Únete a CREA
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
