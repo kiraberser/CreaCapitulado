@@ -101,7 +101,7 @@ export default function ContactPage() {
                         Ingresar
                       </Button>
                       <p className="text-xs text-gray-500 text-center">
-                        Demo: usa "admin123" como contraseña
+                        Demo: usa &quot;admin123&quot; como contraseña
                       </p>
                     </div>
                   </div>

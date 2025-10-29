@@ -1,6 +1,11 @@
 'use server';
 
-export async function submitContactForm(prevState: any, formData: FormData) {
+export interface ContactFormState {
+  success: boolean;
+  message?: string;
+}
+
+export async function submitContactForm(prevState: ContactFormState | null, formData: FormData) {
   try {
     const data = {
       name: formData.get('name'),
@@ -30,7 +35,7 @@ export async function submitContactForm(prevState: any, formData: FormData) {
   }
 }
 
-export async function submitApplicationForm(prevState: any, formData: FormData) {
+export async function submitApplicationForm(prevState: ContactFormState | null, formData: FormData) {
   try {
     const skills = [];
     let i = 0;
@@ -90,7 +95,7 @@ export async function submitApplicationForm(prevState: any, formData: FormData) 
   }
 }
 
-export async function addNewMember(prevState: any, formData: FormData) {
+export async function addNewMember(prevState: ContactFormState | null, formData: FormData) {
   try {
     // Extraer arrays dinámicos
     const skills = [];
