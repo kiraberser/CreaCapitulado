@@ -5,32 +5,25 @@ const StatsSection = () => {
   const stats = [
     {
       icon: Users,
-      number: '150+',
+      number: '29+',
       label: 'Miembros Activos',
       description: 'Estudiantes comprometidos con la innovación',
       color: 'text-blue-600'
     },
     {
       icon: BookOpen,
-      number: '25+',
+      number: '4+',
       label: 'Proyectos Completados',
       description: 'Soluciones reales implementadas exitosamente',
       color: 'text-green-600'
     },
     {
       icon: Calendar,
-      number: '50+',
+      number: '10+',
       label: 'Eventos Organizados',
       description: 'Workshops, charlas y actividades académicas',
       color: 'text-yellow-600'
     },
-    {
-      icon: Award,
-      number: '15+',
-      label: 'Premios Obtenidos',
-      description: 'Reconocimientos a nivel nacional e internacional',
-      color: 'text-red-600'
-    }
   ];
 
   return (
