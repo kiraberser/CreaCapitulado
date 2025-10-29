@@ -5,6 +5,7 @@ import { Calendar, Clock, User, Search, Tag } from 'lucide-react';
 import { blogPosts } from '@/data/mockData';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -84,10 +85,12 @@ export default function BlogPage() {
                 className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
               >
                 <div className="aspect-video overflow-hidden">
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={500}
+                    height={300}
                   />
                 </div>
 
