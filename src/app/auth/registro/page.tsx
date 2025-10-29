@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useActionState, useEffect } from 'react';
 import Link from 'next/link';
 import { Eye, EyeOff, Mail, Lock, User, UserPlus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,79 +7,49 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { toast } from 'sonner';
+import toast, {Toaster} from 'react-hot-toast';
 
+import { registerUser, type RegisterFormState } from '@/actions/user';
+import { useRouter } from 'next/navigation';
+import { departmentsSelect as careers, semesters } from '@/data/mockData';
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    career: '',
-    semester: '',
-    acceptTerms: false
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const formRef = React.useRef<HTMLFormElement>(null);
+  const [state, formAction, isPending] = useActionState<RegisterFormState | null, FormData>(
+    registerUser,
+    null
+  );
+  
+  // Solo mantenemos estado para campos que no se pueden controlar directamente (Select, Checkbox)
+  const [career, setCareer] = React.useState('');
+  const [semester, setSemester] = React.useState('');
+  const [acceptTerms, setAcceptTerms] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
-  const careers = [
-    'Ingeniería de Sistemas',
-    'Ingeniería Industrial',
-    'Administración de Empresas',
-    'Diseño Gráfico',
-    'Marketing Digital',
-    'Otra'
-  ];
-
-  const semesters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const handleSelectChange = (name) => (value) => {
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (formData.password !== formData.confirmPassword) {
-      toast.error('Las contraseñas no coinciden');
-      return;
+  // Manejar cambios de estado y mostrar toasts
+  useEffect(() => {
+    if (state) {
+      if (state.success) {
+        toast.success(state.message || '¡Cuenta creada exitosamente! Ya puedes iniciar sesión con tu nueva cuenta.');
+        // Resetear formulario después de éxito
+        if (formRef.current) {
+          formRef.current.reset();
+          setCareer('');
+          setSemester('');
+          setAcceptTerms(false);
+        }
+        // Opcional: redirigir después de 2 segundos
+        setTimeout(() => {
+          router.push('/auth/login');
+        }, 2000);
+      } else {
+        const errorMessage = state.message || 'Error al crear la cuenta';
+        toast.error(errorMessage);
+      }
     }
-
-    if (!formData.acceptTerms) {
-      toast.error('Debes aceptar los términos y condiciones');
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast.success('¡Cuenta creada exitosamente!', {
-        description: 'Ya puedes iniciar sesión con tu nueva cuenta.',
-      });
-    } catch (error) {
-      toast.error('Error al crear la cuenta', {
-        description: 'Por favor, intenta nuevamente.',
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [state, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center py-8">
@@ -104,7 +74,7 @@ export default function RegisterPage() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={formRef} action={formAction} className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="firstName">Nombre</Label>
@@ -115,8 +85,6 @@ export default function RegisterPage() {
                     name="firstName"
                     type="text"
                     required
-                    value={formData.firstName}
-                    onChange={handleInputChange}
                     placeholder="Tu nombre"
                     className="pl-10"
                   />
@@ -131,8 +99,6 @@ export default function RegisterPage() {
                     name="lastName"
                     type="text"
                     required
-                    value={formData.lastName}
-                    onChange={handleInputChange}
                     placeholder="Tu apellido"
                     className="pl-10"
                   />
@@ -149,8 +115,6 @@ export default function RegisterPage() {
                   name="email"
                   type="email"
                   required
-                  value={formData.email}
-                  onChange={handleInputChange}
                   placeholder="tu@email.com"
                   className="pl-10"
                 />
@@ -160,14 +124,14 @@ export default function RegisterPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="career">Carrera</Label>
-                <Select onValueChange={handleSelectChange('career')}>
+                <Select onValueChange={setCareer} required>
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Selecciona tu carrera" />
                   </SelectTrigger>
-                  <SelectContent>
-                    {careers.map((career) => (
-                      <SelectItem key={career} value={career}>
-                        {career}
+                  <SelectContent className="bg-white text-gray-900">
+                    {careers.map((careerOption) => (
+                      <SelectItem className="bg-white cursor-pointer text-gray-900 hover:bg-gray-100" key={careerOption} value={careerOption}>
+                        {careerOption}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -175,14 +139,14 @@ export default function RegisterPage() {
               </div>
               <div>
                 <Label htmlFor="semester">Semestre</Label>
-                <Select onValueChange={handleSelectChange('semester')}>
+                <Select onValueChange={setSemester}>
                   <SelectTrigger className="mt-2">
                     <SelectValue placeholder="Semestre" />
                   </SelectTrigger>
-                  <SelectContent>
-                    {semesters.map((semester) => (
-                      <SelectItem key={semester} value={semester}>
-                        {semester}° Semestre
+                  <SelectContent className="bg-white text-gray-900">
+                    {semesters.map((semesterOption) => (
+                      <SelectItem className="bg-white cursor-pointer text-gray-900 hover:bg-gray-100" key={semesterOption} value={semesterOption}>
+                        {semesterOption}° Semestre
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -199,8 +163,6 @@ export default function RegisterPage() {
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
-                  value={formData.password}
-                  onChange={handleInputChange}
                   placeholder="Mínimo 8 caracteres"
                   className="pl-10 pr-10"
                 />
@@ -223,8 +185,6 @@ export default function RegisterPage() {
                   name="confirmPassword"
                   type={showConfirmPassword ? 'text' : 'password'}
                   required
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
                   placeholder="Confirma tu contraseña"
                   className="pl-10 pr-10"
                 />
@@ -241,9 +201,8 @@ export default function RegisterPage() {
             <div className="flex items-start space-x-2">
               <Checkbox
                 id="acceptTerms"
-                name="acceptTerms"
-                checked={formData.acceptTerms}
-                onChange={handleInputChange}
+                checked={acceptTerms}
+                onCheckedChange={(checked) => setAcceptTerms(checked === true)}
                 className="mt-1"
               />
               <Label htmlFor="acceptTerms" className="text-sm text-gray-600">
@@ -258,20 +217,25 @@ export default function RegisterPage() {
               </Label>
             </div>
 
+            {/* Campos ocultos para enviar datos al FormData */}
+            <input type="hidden" name="career" value={career} />
+            <input type="hidden" name="semester" value={semester} />
+            <input type="hidden" name="acceptTerms" value={acceptTerms ? 'on' : ''} />
+
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700"
-              disabled={isLoading}
+              className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer"
+              disabled={isPending}
             >
-              {isLoading ? (
+              {isPending ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
                   Creando cuenta...
                 </>
               ) : (
                 <>
-                  <UserPlus className="w-4 h-4 mr-2" />
-                  Crear Cuenta
+                  <UserPlus className="w-4 h-4 mr-2 text-white" />
+                  <span className="text-white">Crear Cuenta</span>
                 </>
               )}
             </Button>
@@ -287,6 +251,7 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
+      <Toaster position="top-right" />
     </div>
   );
 }
