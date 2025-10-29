@@ -38,7 +38,7 @@ export default function DepartmentsPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {department.members.map((member) => (
+                {department.members.slice(0, 3).map((member) => (
                   <Link 
                     key={member.id}
                     href={`/departamentos/${department.slug}/${member.slug}`}
@@ -99,20 +99,45 @@ export default function DepartmentsPage() {
                 ))}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p className="text-gray-600">
-                  ¿Te interesa unirte al departamento de {department.name}?
-                </p>
-                <div className="flex gap-3">
-                  <Link 
-                    href={`/departamentos/${department.slug}`}
-                    className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${department.gradient} text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200`}
-                  >
-                    Ver Equipo Completo
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
+              {/* Mensaje si hay más miembros */}
+              {department.members.length > 3 && (
+                <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border-2 border-blue-200">
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <p className="text-lg font-semibold text-gray-900 mb-1">
+                        Hay {department.members.length - 3} miembro{department.members.length - 3 !== 1 ? 's' : ''} más en {department.name}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        Descubre todo el talento de nuestro equipo
+                      </p>
+                    </div>
+                    <Link 
+                      href={`/departamentos/${department.slug}`}
+                      className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${department.gradient} text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200 whitespace-nowrap`}
+                    >
+                      Ver Equipo Completo
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {department.members.length <= 3 && (
+                <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <p className="text-gray-600">
+                    ¿Te interesa unirte al departamento de {department.name}?
+                  </p>
+                  <div className="flex gap-3">
+                    <Link 
+                      href={`/departamentos/${department.slug}`}
+                      className={`inline-flex items-center px-6 py-3 bg-gradient-to-r ${department.gradient} text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200`}
+                    >
+                      Ver Equipo Completo
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
