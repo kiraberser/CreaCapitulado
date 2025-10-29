@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { use } from 'react';
 import { Calendar, Clock, User, Tag } from 'lucide-react';
 import { blogPosts } from '@/data/mockData';
+import Image from 'next/image';
 
 export default function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -51,7 +52,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ slug: str
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <div className="mb-8">
-              <img src={post.image} alt={post.title} className="w-full rounded-xl" />
+              <Image src={post.image} alt={post.title} className="w-full rounded-xl" width={500} height={300} />
             </div>
             <div className="prose prose-lg max-w-none">
               {post.content.split('\n').map((para, idx) => (
