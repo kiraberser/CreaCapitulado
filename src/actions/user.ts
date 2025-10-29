@@ -1,11 +1,19 @@
 'use server';
 
 import { z } from 'zod';
+import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
-
-const supabase = await createClient();
+import { revalidatePath } from 'next/cache';
 
 export interface RegisterFormState {
+    success: boolean;
+    message?: string;
+    errors?: {
+        [key: string]: string[];
+    };
+}
+
+export interface LoginFormState {
     success: boolean;
     message?: string;
     errors?: {
@@ -25,6 +33,12 @@ const registerSchema = z.object({
 }).refine((data) => data.password === data.confirmPassword, {
     message: 'Las contraseñas no coinciden',
     path: ['confirmPassword']
+});
+
+const loginSchema = z.object({
+    email: z.string().email('Correo electrónico inválido'),
+    password: z.string().min(1, 'La contraseña es requerida'),
+    rememberMe: z.string().optional()
 });
 
 export async function registerUser(prevState: RegisterFormState | null, formData: FormData) {
@@ -61,6 +75,9 @@ export async function registerUser(prevState: RegisterFormState | null, formData
         }
 
         const dataForm = result.data;
+
+        // Crear cliente de Supabase
+        const supabase = await createClient();
 
         // Simular delay de red
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -107,6 +124,92 @@ export async function registerUser(prevState: RegisterFormState | null, formData
         return {
             success: false,
             message: 'Error al crear la cuenta. Por favor, intenta nuevamente.'
+        };
+    }
+}
+
+export async function loginUser(prevState: LoginFormState | null, formData: FormData) {
+    try {
+        const rawData = {
+            email: formData.get('email') as string,
+            password: formData.get('password') as string,
+            rememberMe: formData.get('rememberMe') as string || ''
+        };
+
+        // Validar con Zod
+        const result = loginSchema.safeParse(rawData);
+        
+        if (!result.success) {
+            const errors: { [key: string]: string[] } = {};
+            result.error.issues.forEach((error) => {
+                const path = error.path[0] as string;
+                if (!errors[path]) {
+                    errors[path] = [];
+                }
+                errors[path].push(error.message);
+            });
+
+            return {
+                success: false,
+                message: 'Por favor corrige los errores en el formulario',
+                errors
+            };
+        }
+
+        const dataForm = result.data;
+
+        // Crear cliente de Supabase
+        const supabase = await createClient();
+
+        // Simular delay de red
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        console.log('\n=== INTENTO DE INICIO DE SESIÓN ===');
+        console.log('Email:', dataForm.email);
+        console.log('Recordarme:', dataForm.rememberMe === 'on');
+        console.log('===================================\n');
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: dataForm.email,
+            password: dataForm.password,
+        });
+
+        if (error) {
+            console.error('Error en loginUser:', error);
+            return {
+                success: false,
+                message: 'Credenciales inválidas. Por favor, verifica tu email y contraseña.'
+            };
+        }
+
+        console.log('Usuario autenticado exitosamente:', data);
+
+        // Obtener el nombre del usuario desde los metadatos
+        const userMetaData = data.user?.user_metadata;
+        const firstName = userMetaData?.first_name || '';
+        const lastName = userMetaData?.last_name || '';
+        const userDisplayName = `${firstName} ${lastName}`.trim() || data.user?.email || 'Usuario';
+
+        const cookieStore = await cookies();
+        cookieStore.set('username', userDisplayName);
+        cookieStore.set('accessToken', data.session?.access_token || '', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60 * 24 * 30, // 30 días
+            path: '/'
+        });
+
+        revalidatePath('/');
+
+        return {
+            success: true,
+            message: '¡Bienvenido de vuelta!'
+        };
+    } catch (error) {
+        console.error('Error en loginUser:', error);
+        return {
+            success: false,
+            message: 'Error al iniciar sesión. Por favor, intenta nuevamente.'
         };
     }
 }

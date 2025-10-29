@@ -1,53 +1,55 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useActionState, useEffect } from 'react';
 import Link from 'next/link';
 import { Eye, EyeOff, Mail, Lock, LogIn, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { toast } from 'sonner';
+import toast, { Toaster } from 'react-hot-toast';
+import { loginUser, type LoginFormState } from '@/actions/user';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    rememberMe: false
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const formRef = React.useRef<HTMLFormElement>(null);
+  const [state, formAction, isPending] = useActionState<LoginFormState | null, FormData>(
+    loginUser,
+    null
+  );
+  
+  const [rememberMe, setRememberMe] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      toast.success('¡Bienvenido de vuelta!', {
-        description: 'Has iniciado sesión exitosamente.',
-      });
-    } catch (error) {
-      toast.error('Error al iniciar sesión', {
-        description: 'Verifica tus credenciales e intenta nuevamente.',
-      });
-    } finally {
-      setIsLoading(false);
+  // Manejar cambios de estado y mostrar toasts
+  useEffect(() => {
+    if (state) {
+      if (state.success) {
+        toast.success(state.message || '¡Bienvenido de vuelta!');
+        // Redirigir después de login exitoso
+        setTimeout(() => {
+          router.push('/');
+        }, 1500);
+      } else {
+        toast.error(state.message || 'Error al iniciar sesión');
+      }
     }
-  };
+  }, [state, router]);
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12">
+      <Link href="/" className="absolute bg-white rounded-full p-2 top-4 left-4 shadow-md cursor-pointer">
+        <ArrowLeft className="w-6 h-6 text-gray-600 cursor-pointer" /> 
+      </Link>
       <div className="w-full max-w-md bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-gray-200 rounded-2xl p-4">
         <div className="text-center mb-8 rounded-2xl p-4">
+          <Link href="/" className="inline-flex items-center space-x-2 mb-8">
+            <div className="w-10 h-10 bg-gradient-to-br from-green-500 via-yellow-500 to-blue-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-xl">C</span>
+            </div>
+            <span className="text-2xl font-bold text-gray-900">CREA</span>
+          </Link>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Iniciar Sesión
@@ -58,7 +60,7 @@ export default function LoginPage() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form ref={formRef} action={formAction} className="space-y-6">
             <div>
               <Label htmlFor="email">Correo Electrónico</Label>
               <div className="relative mt-2">
@@ -68,12 +70,13 @@ export default function LoginPage() {
                   name="email"
                   type="email"
                   required
-                  value={formData.email}
-                  onChange={handleInputChange}
                   placeholder="tu@email.com"
-                  className="pl-10"
+                  className={`pl-10 ${state?.errors?.email ? 'border-red-500' : ''}`}
                 />
               </div>
+              {state?.errors?.email && (
+                <p className="text-red-500 text-sm mt-1">{state.errors.email[0]}</p>
+              )}
             </div>
 
             <div>
@@ -85,10 +88,8 @@ export default function LoginPage() {
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
-                  value={formData.password}
-                  onChange={handleInputChange}
                   placeholder="Tu contraseña"
-                  className="pl-10 pr-10"
+                  className={`pl-10 pr-10 ${state?.errors?.password ? 'border-red-500' : ''}`}
                 />
                 <button
                   type="button"
@@ -98,19 +99,22 @@ export default function LoginPage() {
                   {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                 </button>
               </div>
+              {state?.errors?.password && (
+                <p className="text-red-500 text-sm mt-1">{state.errors.password[0]}</p>
+              )}
             </div>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="rememberMe"
-                  name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleInputChange}
+                  checked={rememberMe}
+                  onCheckedChange={(checked) => setRememberMe(checked === true)}
                 />
                 <Label htmlFor="rememberMe" className="text-sm">
                   Recordarme
                 </Label>
+                <input type="hidden" name="rememberMe" value={rememberMe ? 'on' : ''} />
               </div>
               <Link
                 href="/forgot-password"
@@ -123,9 +127,9 @@ export default function LoginPage() {
             <Button
               type="submit"
               className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer"
-              disabled={isLoading}
+              disabled={isPending}
             >
-              {isLoading ? (
+              {isPending ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
                   Iniciando sesión...
@@ -153,7 +157,7 @@ export default function LoginPage() {
               type="button"
               variant="outline"
               className="w-full"
-              onClick={() => toast.info('Próximamente disponible')}
+              onClick={() => toast('Próximamente disponible', { icon: 'ℹ️' })}
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -168,7 +172,7 @@ export default function LoginPage() {
               type="button"
               variant="outline"
               className="w-full"
-              onClick={() => toast.info('Próximamente disponible')}
+              onClick={() => toast('Próximamente disponible', { icon: 'ℹ️' })}
             >
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -187,6 +191,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+      <Toaster position="top-center" />
     </div>
   );
 }
