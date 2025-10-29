@@ -31,7 +31,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Ubicación',
-    value: 'Universidad Nacional\nBogotá, Colombia',
+    value: 'Instituto Tecnologico de Veracruz',
     link: 'https://maps.google.com'
   }
 ];
