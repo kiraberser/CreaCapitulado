@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, ArrowLeft, Award, Calendar, Briefcase, Code, Star, ExternalLink, MessageCircle, Instagram, Facebook } from 'lucide-react';
+import { Mail, Phone, ArrowLeft, Award, Calendar, Briefcase, Code, Star, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import { departments } from '@/data/mockData';
 import { notFound } from 'next/navigation';
 import { use } from 'react';
+import Image from 'next/image';
 
 export default function MemberProfilePage({ 
   params 
@@ -62,10 +63,12 @@ export default function MemberProfilePage({
                   <div className="relative -mt-16 mb-4 flex justify-center">
                     <div className="relative">
                       <div className={`absolute inset-0 bg-gradient-to-r ${department.gradient} rounded-full blur-2xl opacity-60`}></div>
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
                         className="relative w-32 h-32 rounded-full object-cover border-4 border-white shadow-2xl"
+                        width={128}
+                        height={128}
                       />
                     </div>
                   </div>

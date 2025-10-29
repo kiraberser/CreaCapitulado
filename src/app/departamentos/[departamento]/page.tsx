@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, Github, Linkedin, Twitter, ArrowLeft, Sparkles, Award, Calendar } from 'lucide-react';
+import { Mail, Phone, ArrowLeft, Sparkles, Award, Calendar } from 'lucide-react';
 import { departments } from '@/data/mockData';
 import { notFound } from 'next/navigation';
 import { use } from 'react';
+import Image from 'next/image';
 
 export default function DepartmentDetailPage({ params }: { params: Promise<{ departamento: string }> }) {
   const { departamento } = use(params);
@@ -91,7 +92,7 @@ export default function DepartmentDetailPage({ params }: { params: Promise<{ dep
                   <div className="relative mb-6 flex justify-center">
                     <div className="relative">
                       <div className={`absolute inset-0 bg-gradient-to-r ${department.gradient} rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500`}></div>
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
                         className="relative w-32 h-32 rounded-full object-cover border-4 border-white shadow-xl group-hover:scale-110 transition-transform duration-500"

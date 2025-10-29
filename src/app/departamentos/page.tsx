@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Mail, ExternalLink, Users, ArrowRight } from 'lucide-react';
 import { departments } from '@/data/mockData';
+import Image from 'next/image';
 
 export default function DepartmentsPage() {
   return (
@@ -45,7 +46,7 @@ export default function DepartmentsPage() {
                     className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group cursor-pointer"
                   >
                     <div className="relative mb-6">
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
                         className="w-20 h-20 rounded-full mx-auto object-cover border-4 border-white shadow-md group-hover:scale-110 transition-transform duration-300"
