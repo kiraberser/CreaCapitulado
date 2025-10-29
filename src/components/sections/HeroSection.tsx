@@ -35,7 +35,7 @@ const HeroSection = () => {
             <div className="mb-6 lg:mb-10">
               <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
                 <Lightbulb className="w-4 h-4 mr-2" />
-                Capítulo Estudiantil de Innovación
+                Capítulado Estudiantil de Administración
               </div>
 
               <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">

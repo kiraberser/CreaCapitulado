@@ -68,7 +68,7 @@ const Header = () => {
               <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                 CREA
               </span>
-              <span className="text-xs text-gray-500 -mt-1 hidden sm:block">Capítulo Estudiantil</span>
+              <span className="text-xs text-gray-500 -mt-1 hidden sm:block">Capítulado Estudiantil</span>
             </div>
           </Link>
 

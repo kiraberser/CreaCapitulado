@@ -43,7 +43,7 @@ const Footer = () => {
             <p className="text-gray-300 text-lg leading-relaxed max-w-md">
               <span className="font-semibold text-white">Tu potencial creativo, nuestro compromiso.</span>
               <br />
-              Comunidad estudiantil dedicada a la innovación, creatividad y desarrollo profesional.
+              Comunidad estudiantil dedicada a la administración, creatividad y desarrollo profesional.
             </p>
 
             {/* Social Media with modern design */}
@@ -137,7 +137,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Ubicación</p>
-                  <p className="font-medium">Instituto Tecnologico de Vera<br />Veracruz, Mexico</p>
+                  <p className="font-medium">Instituto Tecnologico de<br />Veracruz, Mexico</p>
                 </div>
               </li>
             </ul>
