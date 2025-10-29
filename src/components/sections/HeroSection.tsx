@@ -1,47 +1,10 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Play, Users, BookOpen, Lightbulb, Sparkles } from 'lucide-react';
+import { Users, BookOpen, Lightbulb, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
 const HeroSection = () => {
-  const words = ['creativo', 'compromiso'];
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
-
-  useEffect(() => {
-    const currentWord = words[currentWordIndex];
-
-    const handleTyping = () => {
-      if (!isDeleting) {
-        // Escribiendo
-        if (displayText.length < currentWord.length) {
-          setDisplayText(currentWord.substring(0, displayText.length + 1));
-          setTypingSpeed(150);
-        } else {
-          // Palabra completa, esperar antes de borrar
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        // Borrando
-        if (displayText.length > 0) {
-          setDisplayText(currentWord.substring(0, displayText.length - 1));
-          setTypingSpeed(100);
-        } else {
-          // Terminó de borrar, cambiar a la siguiente palabra
-          setIsDeleting(false);
-          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-        }
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, currentWordIndex, typingSpeed, words]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
@@ -76,31 +39,12 @@ const HeroSection = () => {
               </div>
 
               <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                {currentWordIndex === 0 ? (
-                  <>
-                    <div className="text-center lg:text-left mb-1">
-                      Tu potencial{' '}
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <span className="bg-gradient-to-r from-green-600 via-yellow-600 to-blue-600 bg-clip-text text-transparent inline-block w-[200px] md:w-[260px] lg:w-[320px] h-[1.2em]">
-                        {displayText}
-                        <span className="animate-pulse text-blue-600">|</span>
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="text-center lg:text-left mb-1">
-                      Nuestro{' '}
-                    </div>
-                    <div className="text-center lg:text-left">
-                      <span className="bg-gradient-to-r from-red-600 via-pink-600 to-blue-600 bg-clip-text text-transparent inline-block w-[240px] md:w-[300px] lg:w-[380px] h-[1.2em]">
-                        {displayText}
-                        <span className="animate-pulse text-pink-600">|</span>
-                      </span>
-                    </div>
-                  </>
-                )}
+                <div className="text-center lg:text-left">
+                  Tu potencial{' '}
+                  <span className="bg-gradient-to-r from-green-600 via-yellow-600 to-blue-600 bg-clip-text text-transparent">
+                    creativo
+                  </span>
+                </div>
               </div>
 
               <p className="text-xl text-gray-600 mb-6 lg:mb-8 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
