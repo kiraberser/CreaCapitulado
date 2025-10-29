@@ -18,7 +18,7 @@ export const departments = [
         position: "Presidencia",
         email: "diana.espana@crea.edu.co",
         phone: "+57 300 000 0001",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 7to semestre comprometida con el desarrollo estudiantil y la excelencia académica. Liderando CREA con visión estratégica y enfoque en el bienestar de la comunidad estudiantil.",
         skills: ["Liderazgo", "Gestión Estratégica", "Comunicación", "Negociación", "Planificación"],
         achievements: ["Matrícula: 22020657", "7to Semestre"],
@@ -200,7 +200,7 @@ export const departments = [
         position: "Staff Base",
         email: "diana.lazaro@crea.edu.co",
         phone: "+57 300 000 0009",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 4to semestre en el equipo base de gestión estudiantil.",
         skills: ["Apoyo General", "Gestión", "Comunicación"],
         achievements: ["Matrícula: 24020123", "4to Semestre"],
@@ -280,7 +280,7 @@ export const departments = [
         position: "Coordinación de Planeación",
         email: "alexa.jimenez@crea.edu.co",
         phone: "+57 300 000 0015",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 4to semestre en la coordinación de la planeación estratégica de proyectos.",
         skills: ["Planeación", "Estrategia", "Organización"],
         achievements: ["Matrícula: 24020144", "4to Semestre"],
@@ -348,7 +348,7 @@ export const departments = [
         position: "Auxiliar de Seguimiento Administrativo",
         email: "hazael.olmos@crea.edu.co",
         phone: "+57 300 000 0019",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 4to semestre en el seguimiento administrativo de proyectos.",
         skills: ["Seguimiento", "Administración", "Gestión"],
         achievements: ["Matrícula: 24020112", "4to Semestre"],
@@ -377,7 +377,7 @@ export const departments = [
         position: "Dirección de Finanzas",
         email: "rubi.bravo@crea.edu.co",
         phone: "+57 300 000 0020",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 7to semestre liderando la dirección financiera de CREA con enfoque en transparencia y eficiencia.",
         skills: ["Gestión Financiera", "Contabilidad", "Liderazgo", "Administración"],
         achievements: ["Matrícula: 22020932", "7to Semestre"],
@@ -457,7 +457,7 @@ export const departments = [
         position: "Dirección de Comunicación y Difusión",
         email: "lilian.lopez@crea.edu.co",
         phone: "+57 300 000 0024",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 7to semestre liderando las comunicaciones y difusión de CREA.",
         skills: ["Comunicación", "Marketing", "Liderazgo", "Difusión"],
         achievements: ["Matrícula: 22020549", "7to Semestre"],
@@ -525,7 +525,7 @@ export const departments = [
         position: "Coordinación de Comunicación Institucional",
         email: "maria.ruiz@crea.edu.co",
         phone: "+57 300 000 0028",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=150&h=150&fit=crop&crop=face",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
         bio: "Estudiante de 7to semestre coordinando la comunicación institucional.",
         skills: ["Comunicación", "Redacción", "Difusión"],
         achievements: ["Matrícula: 22020534", "7to Semestre"],
@@ -629,24 +629,45 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 export const testimonials = [
   {
     id: 1,
-    name: "María José Ramírez",
-    position: "Ex-miembro CREA, Ingeniera de Software en Google",
-    content: "CREA me brindó las herramientas y la experiencia necesarias para desarrollarme profesionalmente. Los proyectos colaborativos y el ambiente de innovación fueron fundamentales en mi formación.",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face"
+    name: "Diana Regina España González",
+    position: "Presidencia - CREA Capítulo Estudiantil",
+    content: "Liderar CREA ha sido una experiencia transformadora. He desarrollado habilidades de liderazgo estratégico y gestión que van más allá del aula de clases. La responsabilidad de representar a nuestra comunidad estudiantil y coordinar todas las áreas organizacionales ha sido un aprendizaje continuo que valoro enormemente.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 2,
-    name: "Andrés Gómez",
-    position: "CEO de TechStartup Colombia",
-    content: "El networking y las oportunidades de crecimiento que encontré en CREA fueron invaluables. Aquí nació la idea de mi startup y encontré a mi co-fundador.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+    name: "Denisse Abigail Calleja Oropeza",
+    position: "Dirección de Gestión Estudiantil - CREA Capítulo Estudiantil",
+    content: "Trabajar en la Dirección de Gestión Estudiantil me ha permitido conectar directamente con las necesidades de nuestros compañeros. Coordinar programas de apoyo y seguimiento académico me ha enseñado la importancia del trabajo colaborativo y el impacto que podemos generar en la vida estudiantil.",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face"
   },
   {
     id: 3,
-    name: "Catalina Vásquez",
-    position: "Diseñadora UX en Mercado Libre",
-    content: "En CREA aprendí a trabajar en equipos multidisciplinarios y desarrollé habilidades que uso todos los días en mi trabajo. Es una comunidad increíble.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
+    name: "Carlos Irvin Sánchez Coaury",
+    position: "Dirección de Proyectos - CREA Capítulo Estudiantil",
+    content: "La Dirección de Proyectos me ha dado la oportunidad de aplicar metodologías profesionales de gestión en un entorno real. Planificar, organizar y dar seguimiento a múltiples iniciativas simultáneamente ha fortalecido mis habilidades de organización y liderazgo de manera excepcional.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    id: 4,
+    name: "Rubí Bravo Montiel",
+    position: "Dirección de Finanzas - CREA Capítulo Estudiantil",
+    content: "Administrar las finanzas de CREA ha sido un desafío enriquecedor. He aprendido sobre transparencia financiera, gestión de recursos y contabilidad aplicada, habilidades que definitivamente serán valiosas en mi futuro profesional. La responsabilidad de gestionar los recursos de la organización me ha dado una perspectiva práctica invaluable.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    id: 5,
+    name: "Lilián Michelle López Carrasco",
+    position: "Dirección de Comunicación y Difusión - CREA Capítulo Estudiantil",
+    content: "Liderar las comunicaciones de CREA me ha permitido desarrollar estrategias de marketing y difusión en un contexto real. Coordinar el diseño, la programación y la comunicación institucional me ha enseñado a trabajar con equipos multidisciplinarios y a comunicar efectivamente el mensaje de nuestra organización.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face"
+  },
+  {
+    id: 6,
+    name: "Edwin Alfredo Vega Aldana",
+    position: "Auxiliar de Programación - Dirección de Comunicación y Difusión",
+    content: "Mi rol en el desarrollo técnico de las plataformas de CREA ha sido fundamental para mi crecimiento como desarrollador. Trabajar en proyectos reales que impactan a toda la comunidad estudiantil me ha motivado a mejorar constantemente y aplicar las mejores prácticas de desarrollo web y programación.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
   }
 ];
 
