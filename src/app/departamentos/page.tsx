@@ -49,6 +49,8 @@ export default function DepartmentsPage() {
                       <Image
                         src={member.image}
                         alt={member.name}
+                        width={80}
+                        height={80}
                         className="w-20 h-20 rounded-full mx-auto object-cover border-4 border-white shadow-md group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
