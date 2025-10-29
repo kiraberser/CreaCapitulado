@@ -1,5 +1,6 @@
 import { Target, Eye, Users, Award, Lightbulb, Heart } from 'lucide-react';
 import { testimonials } from '@/data/mockData';
+import Image from 'next/image';
 
 export default function AboutPage() {
   const values = [
@@ -135,10 +136,12 @@ export default function AboutPage() {
                 className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300"
               >
                 <div className="flex items-center mb-6">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full object-cover mr-4"
+                    width={48}
+                    height={48}
                   />
                   <div>
                     <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
@@ -146,7 +149,7 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <p className="text-gray-700 leading-relaxed italic">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
               </div>
             ))}
