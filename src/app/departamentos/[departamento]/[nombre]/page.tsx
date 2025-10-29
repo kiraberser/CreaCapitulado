@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, Github, Linkedin, Twitter, ArrowLeft, Award, Calendar, Briefcase, Code, Star, ExternalLink, MessageCircle } from 'lucide-react';
+import { Mail, Phone, ArrowLeft, Award, Calendar, Briefcase, Code, Star, ExternalLink, MessageCircle, Instagram, Facebook } from 'lucide-react';
 import { departments } from '@/data/mockData';
 import { notFound } from 'next/navigation';
 import { use } from 'react';
@@ -89,7 +89,7 @@ export default function MemberProfilePage({
 
                   {/* Contact Information */}
                   <div className="space-y-3 mb-6">
-                    <a 
+                    <Link 
                       href={`mailto:${member.email}`}
                       className="flex items-center gap-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-xl transition-colors group"
                     >
@@ -100,9 +100,9 @@ export default function MemberProfilePage({
                         <p className="text-xs text-gray-500 font-medium">Email</p>
                         <p className="text-sm text-gray-900 font-medium truncate">{member.email}</p>
                       </div>
-                    </a>
+                    </Link>
 
-                    <a 
+                    <Link 
                       href={`tel:${member.phone}`}
                       className="flex items-center gap-3 p-3 bg-green-50 hover:bg-green-100 rounded-xl transition-colors group"
                     >
@@ -113,7 +113,7 @@ export default function MemberProfilePage({
                         <p className="text-xs text-gray-500 font-medium">Teléfono</p>
                         <p className="text-sm text-gray-900 font-medium">{member.phone}</p>
                       </div>
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Social Links */}
@@ -121,48 +121,18 @@ export default function MemberProfilePage({
                     <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
                       Redes Sociales
                     </p>
-                    {member.social.linkedin && (
-                      <a
-                        href={`https://${member.social.linkedin}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group"
-                      >
-                        <Linkedin className="w-5 h-5 text-blue-600" />
-                        <span className="text-sm text-gray-700 group-hover:text-blue-600 transition-colors">
-                          LinkedIn
-                        </span>
-                        <ExternalLink className="w-3 h-3 text-gray-400 ml-auto" />
-                      </a>
-                    )}
-                    {'github' in member.social && member.social.github && (
-                      <a
-                        href={`https://${member.social.github}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group"
-                      >
-                        <Github className="w-5 h-5 text-gray-900" />
-                        <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
-                          GitHub
-                        </span>
-                        <ExternalLink className="w-3 h-3 text-gray-400 ml-auto" />
-                      </a>
-                    )}
-                    {'twitter' in member.social && member.social.twitter && (
-                      <a
-                        href={`https://twitter.com/${member.social.twitter.replace('@', '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group"
-                      >
-                        <Twitter className="w-5 h-5 text-blue-400" />
-                        <span className="text-sm text-gray-700 group-hover:text-blue-400 transition-colors">
-                          {member.social.twitter}
-                        </span>
-                        <ExternalLink className="w-3 h-3 text-gray-400 ml-auto" />
-                      </a>
-                    )}
+                    <Link href="https://www.instagram.com/crea_itver/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group">
+                      <Instagram className="w-5 h-5 text-gray-600" />
+                      <span className="text-sm text-gray-700 group-hover:text-gray-600 transition-colors">
+                        Instagram
+                      </span>
+                    </Link>
+                    <Link href="https://www.facebook.com/CREA.ITV" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group">
+                      <Facebook className="w-5 h-5 text-gray-600" />
+                      <span className="text-sm text-gray-700 group-hover:text-gray-600 transition-colors">
+                        Facebook
+                      </span>
+                    </Link>
                   </div>
 
                   {/* CTA Button */}
@@ -301,12 +271,12 @@ export default function MemberProfilePage({
                   {member.name} está abierto/a a nuevas oportunidades de colaboración y proyectos innovadores.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a
+                  <Link
                     href={`mailto:${member.email}`}
                     className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                   >
                     Enviar Email
-                  </a>
+                  </Link>
                   <Link
                     href={`/departamentos/${departamento}`}
                     className="px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-200"
