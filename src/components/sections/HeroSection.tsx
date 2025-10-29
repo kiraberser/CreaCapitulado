@@ -125,21 +125,21 @@ const HeroSection = () => {
                 <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-green-100 rounded-xl mb-2 mx-auto shadow-lg">
                   <Users className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-green-600" />
                 </div>
-                <div className="text-xl sm:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl font-bold text-gray-900">150+</div>
+                <div className="text-xl sm:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl font-bold text-gray-900">29+</div>
                 <div className="text-xs sm:text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">Miembros</div>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-yellow-100 rounded-xl mb-2 mx-auto shadow-lg">
                   <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-yellow-600" />
                 </div>
-                <div className="text-xl sm:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl font-bold text-gray-900">25+</div>
+                <div className="text-xl sm:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl font-bold text-gray-900">4+</div>
                 <div className="text-xs sm:text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">Proyectos</div>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-blue-100 rounded-xl mb-2 mx-auto shadow-lg">
                   <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-6 lg:h-6 xl:w-7 xl:h-7 text-blue-600" />
                 </div>
-                <div className="text-xl sm:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl font-bold text-gray-900">50+</div>
+                <div className="text-xl sm:text-2xl lg:text-xl xl:text-xl 2xl:text-2xl font-bold text-gray-900">5+</div>
                 <div className="text-xs sm:text-sm lg:text-xs xl:text-xs 2xl:text-sm text-gray-600">Eventos</div>
               </div>
             </div>
