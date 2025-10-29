@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Facebook, Instagram, Mail, MapPin, Phone, ArrowRight, Heart } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
