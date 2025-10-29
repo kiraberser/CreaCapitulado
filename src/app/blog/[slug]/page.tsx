@@ -1,10 +1,28 @@
+'use client';
+
 import { notFound } from 'next/navigation';
+import { use } from 'react';
 import { Calendar, Clock, User, Tag } from 'lucide-react';
 import { blogPosts } from '@/data/mockData';
 
-export default function BlogDetailPage({ params }: { params: { id: string } }) {
-  const postId = Number(params.id);
-  const post = blogPosts.find(p => p.id === postId);
+export default function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
+  
+  // Buscar post por slug
+  const slugFromTitle = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/[áàäâ]/g, 'a')
+      .replace(/[éèëê]/g, 'e')
+      .replace(/[íìïî]/g, 'i')
+      .replace(/[óòöô]/g, 'o')
+      .replace(/[úùüû]/g, 'u')
+      .replace(/ñ/g, 'n')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+  
+  const post = blogPosts.find(p => slugFromTitle(p.title) === slug);
 
   if (!post) return notFound();
 
