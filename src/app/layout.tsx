@@ -6,6 +6,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ToastProvider } from "@/components/ToastProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 
@@ -51,6 +52,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ToastProvider />
           <Analytics />
           <SpeedInsights />
         </main>

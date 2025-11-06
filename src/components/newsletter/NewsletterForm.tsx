@@ -6,7 +6,7 @@ import { Mail, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { toast } from 'sonner';
+import toast from 'react-hot-toast';
 import { subscribeNewsletter } from '@/actions/newsletter';
 
 const initialState = {
@@ -24,12 +24,12 @@ export default function NewsletterForm({ className = '', variant = 'default' }: 
 
     useEffect(() => {
         if (newsletterState?.success) {
-            toast.success(newsletterState.message, {
-                description: 'Revisa tu bandeja de entrada para confirmar tu suscripción.',
+            toast.success(newsletterState.message || '¡Gracias por suscribirte! Te hemos enviado un correo de confirmación.', {
+                duration: 4000,
             });
         } else if (newsletterState?.message && !newsletterState?.success) {
-            toast.error(newsletterState.message, {
-                description: 'Por favor, verifica tu correo e inténtalo nuevamente.',
+            toast.error(newsletterState.message || 'Error al procesar tu suscripción. Por favor, inténtalo nuevamente.', {
+                duration: 4000,
             });
         }
     }, [newsletterState]);
