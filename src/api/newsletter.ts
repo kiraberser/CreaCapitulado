@@ -19,7 +19,7 @@ export async function sendNewsletter(email: string) {
         // Crear el objeto de email
         const sendSmtpEmail = new SendSmtpEmail();
         sendSmtpEmail.to = [{ email }];
-        sendSmtpEmail.templateId = parseInt(templateId || '0');
+        sendSmtpEmail.templateId = parseInt(templateId || '3');
 
         // Enviar el email
         const response = await emailAPI.sendTransacEmail(sendSmtpEmail);
