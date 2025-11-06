@@ -4,7 +4,7 @@ export async function sendNewsletter(email: string) {
     try {
         // Verificar que la API key esté configurada
         const apiKey = process.env.BREVO_API_KEY;
-        
+        const templateId = process.env.BREVO_TEMPLATE_ID;
         if (!apiKey) {
             console.error('BREVO_API_KEY no está configurada en las variables de entorno');
             throw new Error('La configuración de email no está disponible');
@@ -19,7 +19,7 @@ export async function sendNewsletter(email: string) {
         // Crear el objeto de email
         const sendSmtpEmail = new SendSmtpEmail();
         sendSmtpEmail.to = [{ email }];
-        sendSmtpEmail.templateId = 1;
+        sendSmtpEmail.templateId = parseInt(templateId || '0');
 
         // Enviar el email
         const response = await emailAPI.sendTransacEmail(sendSmtpEmail);
