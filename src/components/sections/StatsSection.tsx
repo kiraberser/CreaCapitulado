@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, BookOpen, Calendar, Award } from 'lucide-react';
+import { Users, BookOpen, Calendar } from 'lucide-react';
 
 const StatsSection = () => {
   const stats = [

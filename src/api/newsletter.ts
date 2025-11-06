@@ -30,17 +30,17 @@ export async function sendNewsletter(email: string) {
             success: true,
             message: '¡Gracias por suscribirte! Te hemos enviado un correo de confirmación.'
         };
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error sending newsletter:', error);
         
         // Proporcionar mensajes de error más específicos
-        if (error.status === 401 || error.response?.status === 401) {
+        if ((error as Error & { status?: number }).status === 401 || (error as  Error & { response?: { status: number } }).response?.status === 401) {
             console.error('Error de autenticación: Verifica que BREVO_API_KEY sea correcta');
             throw new Error('Error de autenticación con el servicio de email. Verifica la configuración.');
         }
         
-        if (error.response?.body) {
-            console.error('Detalles del error:', error.response.body);
+        if ((error as Error & { response?: { body: unknown } }).response?.body) {
+            console.error('Detalles del error:', (error as Error & { response?: { body: unknown } }).response?.body);
         }
         
         throw error;

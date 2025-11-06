@@ -27,7 +27,7 @@ export async function subscribeNewsletter(prevState: NewsletterFormState | null,
         const supabase = await createClient();
 
         // Verificar si el email ya existe en la base de datos
-        let { data: existingNewsletter, error: checkError } = await supabase
+        const { data: existingNewsletter, error: checkError } = await supabase
             .from('Newsletter')
             .select('id, email')
             .eq('email', normalizedEmail)
@@ -50,12 +50,12 @@ export async function subscribeNewsletter(prevState: NewsletterFormState | null,
 
             return {
                 success: true,
-                message: '¡Ya estás suscrito a nuestro newsletter! Revisa tu bandeja de entrada.'
+                message: '¡Ya estás suscrito a nuestro newsconstter! Revisa tu bandeja de entrada.'
             };
         }
 
         // Si no existe, guardar en Supabase
-        let { data: newsletter, error: insertError } = await supabase
+        const { data: newsletter, error: insertError } = await supabase
             .from('Newsletter')
             .insert([
                 {
@@ -85,12 +85,12 @@ export async function subscribeNewsletter(prevState: NewsletterFormState | null,
                 success: true,
                 message: '¡Gracias por suscribirte! Te hemos enviado un correo de confirmación.'
             };
-        } catch (emailError: any) {
+        } catch (emailError: unknown) {
             // Si falla el envío del email pero ya se guardó en la BD, informar pero no fallar completamente
             console.error('Error al enviar email, pero suscripción guardada:', emailError);
             
             // Si es un error de configuración (API key faltante), informar al usuario
-            if (emailError.message?.includes('configuración')) {
+            if ((emailError as Error).message?.includes('configuración')) {
                 return {
                     success: false,
                     message: 'Tu suscripción fue guardada, pero hubo un error al enviar el correo de confirmación. Por favor, contacta al administrador.'
