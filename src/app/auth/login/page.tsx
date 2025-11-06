@@ -39,9 +39,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12">
-      <Link href="/" className="absolute bg-white rounded-full p-2 top-4 left-4 shadow-md cursor-pointer">
-        <ArrowLeft className="w-6 h-6 text-gray-600 cursor-pointer" /> 
-      </Link>
       <div className="w-full max-w-md bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-gray-200 rounded-2xl p-4">
         <div className="text-center mb-8 rounded-2xl p-4">
           <Link href="/" className="inline-flex items-center space-x-2 mb-8">
