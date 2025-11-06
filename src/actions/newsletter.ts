@@ -1,7 +1,11 @@
 'use server';
 
-import { sendNewsletter } from '@/api/newsletter';
+import { sendNewsletter, sendNewsletterViaSupabase } from '@/api/newsletter';
 import { createClient } from '@/utils/supabase/server';
+
+// Cambiar esto a true para usar Supabase Edge Functions (recomendado para evitar problemas de IP)
+// Cambiar a false para usar Brevo directamente desde Vercel
+const USE_SUPABASE_EDGE_FUNCTION = true;
 
 export interface NewsletterFormState {
     success: boolean;
@@ -80,7 +84,12 @@ export async function subscribeNewsletter(prevState: NewsletterFormState | null,
 
         // Enviar correo de bienvenida solo si es un nuevo suscriptor
         try {
-            await sendNewsletter(normalizedEmail);
+            // Usar Supabase Edge Function si está habilitado, sino usar Brevo directamente
+            if (USE_SUPABASE_EDGE_FUNCTION) {
+                await sendNewsletterViaSupabase(normalizedEmail);
+            } else {
+                await sendNewsletter(normalizedEmail);
+            }
             return {
                 success: true,
                 message: '¡Gracias por suscribirte! Te hemos enviado un correo de confirmación.'
