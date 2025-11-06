@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Facebook, Instagram, Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import NewsletterForm from '@/components/newsletter/NewsletterForm';
 
 const Footer = () => {
   const pathname = usePathname();
@@ -21,7 +22,7 @@ const Footer = () => {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
           
           {/* Logo & Description */}
           <div className="lg:col-span-2 space-y-6">
@@ -141,6 +142,18 @@ const Footer = () => {
                 </div>
               </li>
             </ul>
+          </div>
+
+          {/* Newsletter Subscription */}
+          <div className="lg:col-span-1">
+            <h3 className="text-xl font-bold mb-6 relative inline-block">
+              Newsletter
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full"></span>
+            </h3>
+            <p className="text-gray-300 text-sm mb-4">
+              Suscríbete para recibir las últimas novedades y eventos exclusivos.
+            </p>
+            <NewsletterForm variant="compact" className="mt-4" />
           </div>
         </div>
 
