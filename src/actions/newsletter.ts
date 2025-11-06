@@ -50,7 +50,7 @@ export async function subscribeNewsletter(prevState: NewsletterFormState | null,
 
             return {
                 success: true,
-                message: '¡Ya estás suscrito a nuestro newsconstter! Revisa tu bandeja de entrada.'
+                message: '¡Ya estás suscrito a nuestro Newsletter! Revisa tu bandeja de entrada.'
             };
         }
 
